@@ -5,12 +5,6 @@
   text-align: center;
 }
 
-
-.card {
-  padding: 2em;
-}
-
-
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -134,13 +128,36 @@ button:hover {
   font-size: 0.8rem;
 }
 
-/* Disabled state styles */
 textarea:disabled {
   background-color: #f5f5f5;
   cursor: not-allowed;
 }
 
-/* Responsive adjustments */
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.creating-message {
+  margin-top: 1rem;
+  color: #e91e63;
+  font-weight: 500;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
 @media (max-width: 768px) {
   .container {
     padding: 1rem;
@@ -216,6 +233,7 @@ textarea:disabled {
 .card {
   cursor: pointer;
   transition: transform 0.2s;
+  padding: 2rem;
 }
 
 .card:hover {

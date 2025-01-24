@@ -38,6 +38,7 @@ const App = () => {
     email: ''
   })
   const [showModal, setShowModal] = useState(false)
+  const [isCreating, setIsCreating] = useState(false)
 
   useEffect(() => {
     getCards()
@@ -54,6 +55,7 @@ const App = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setIsCreating(true)
     try {
       await axios.post('http://localhost:8787/api/cards', formData)
       getCards()
@@ -65,6 +67,8 @@ const App = () => {
       })
     } catch (error) {
       console.error('Error:', error)
+    } finally {
+      setIsCreating(false)
     }
   }
 
@@ -113,6 +117,8 @@ const App = () => {
   return (
     <div className="container">
       <h1>Valentine's Day Cards</h1>
+
+      <p>Create a custom card or use one of the predefined options and send it!</p>
 
       <form onSubmit={handleSubmit} className="card-form">
         <div className="form-group">
@@ -171,7 +177,12 @@ const App = () => {
           />
         </div>
 
-        <button type="submit">Create Card</button>
+        <button type="submit" disabled={isCreating}>
+          {isCreating ? 'Creating Card...' : 'Create Card'}
+        </button>
+        {isCreating && (
+          <p className="creating-message">Please wait while we create your card!</p>
+        )}
       </form>
 
       <div className="cards-gallery">
