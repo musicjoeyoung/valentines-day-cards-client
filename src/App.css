@@ -84,11 +84,16 @@ button:hover {
   overflow: hidden;
   transition: transform 0.2s;
   position: relative;
+  cursor: pointer;
+  transition: transform 0.2s;
+  padding: 2rem;
 }
 
 .card:hover {
   transform: translateY(-5px);
 }
+
+
 
 .card-content {
   padding: 1.5rem;
@@ -230,12 +235,3 @@ button:disabled {
   color: #333;
 }
 
-.card {
-  cursor: pointer;
-  transition: transform 0.2s;
-  padding: 2rem;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-}
