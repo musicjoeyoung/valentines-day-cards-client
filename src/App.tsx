@@ -47,6 +47,7 @@ const App = () => {
   })
   const [showModal, setShowModal] = useState(false)
   const [isCreating, setIsCreating] = useState(false)
+  const [error, setError] = useState<string>('')
 
   useEffect(() => {
     getCards()
@@ -81,9 +82,17 @@ const App = () => {
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target
+    
+    if (name === 'message' && formData.messageType === 'custom' && value.length > 300) {
+      setError('Message cannot exceed 300 characters')
+    } else {
+      setError('')
+    }
+    
     setFormData(prev => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [name]: value
     }))
   }
 
@@ -183,9 +192,20 @@ const App = () => {
               : "Message will be AI generated"}
             disabled={!['custom', 'improved'].includes(formData.messageType)}
           />
+          {formData.messageType === 'custom' && (
+            <div className="message-info">
+              <span className={`character-count ${formData.message.length > 300 ? 'error' : ''}`}>
+                {formData.message.length}/300 characters
+              </span>
+              {error && <span className="error-message">{error}</span>}
+            </div>
+          )}
         </div>
 
-        <button type="submit" disabled={isCreating}>
+        <button 
+          type="submit" 
+          disabled={isCreating || (formData.messageType === 'custom' && formData.message.length > 300)}
+        >
           {isCreating ? 'Creating Card...' : 'Create Card'}
         </button>
         {isCreating && (
