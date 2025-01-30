@@ -1,11 +1,11 @@
-import { useState } from 'react';
 import axios from 'axios';
+import { useState } from 'react';
 
 interface FormData {
   to: string;
   from: string;
   message: string;
-  messageType: 'custom' | 'improved' | 'sweet' | 'funny' | 'limerick';
+  messageType: 'custom' | 'improved' | 'sweet' | 'funny' | 'limerick' | 'flavorflav';
 }
 
 interface FormProps {
@@ -43,13 +43,13 @@ const Form = ({ onCardCreated }: FormProps) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    
+
     if (name === 'message' && formData.messageType === 'custom' && value.length > 300) {
       setError('Message cannot exceed 300 characters');
     } else {
       setError('');
     }
-    
+
     setFormData(prev => ({
       ...prev,
       [name]: value
@@ -96,6 +96,7 @@ const Form = ({ onCardCreated }: FormProps) => {
           <option value="sweet">Sweet (AI generated)</option>
           <option value="funny">Funny (AI generated)</option>
           <option value="limerick">Limerick (AI generated)</option>
+          <option value="flavorflav">Flavor Flav (AI generated)</option>
         </select>
       </div>
 
@@ -122,8 +123,8 @@ const Form = ({ onCardCreated }: FormProps) => {
         )}
       </div>
 
-      <button 
-        type="submit" 
+      <button
+        type="submit"
         disabled={isCreating || (formData.messageType === 'custom' && formData.message.length > 300)}
       >
         {isCreating ? 'Creating Card...' : 'Create Card'}
