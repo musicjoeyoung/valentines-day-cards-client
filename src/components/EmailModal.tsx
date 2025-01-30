@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
+import React from 'react';
+import './EmailCard.css'; // Importing CSS for styling the card
 
 interface Card {
     id: number;
@@ -15,6 +17,15 @@ interface EmailModalProps {
     showModal: boolean;
     setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+const EmailCard: React.FC<{ content: string }> = ({ content }) => {
+    return (
+        <div className="email-card">
+            <h2>Happy Valentine's Day!</h2>
+            <p>{content}</p>
+        </div>
+    );
+};
 
 const EmailModal = ({ card, onClose, showModal, setShowModal }: EmailModalProps) => {
     const [emailFormData, setEmailFormData] = useState({
@@ -36,10 +47,18 @@ const EmailModal = ({ card, onClose, showModal, setShowModal }: EmailModalProps)
         console.log('Sending email with data:', emailFormData);
 
         try {
+            const emailContent = `
+<div style="border: 1px solid #ff69b4; border-radius: 15px; padding: 20px; background-color: #ffe4e1; box-shadow: rgba(233, 30, 99, 0.2) 0px 7px 29px 0px; margin: 20px; text-align: center;">
+    <h1 style="color: #ff1493; font-family: 'Comic Sans MS', cursive; font-size: 24px;">You've received a Valentine's Day Card! 💝</h1>
+    <p style="font-size: 18px; color: #333;"><strong>To:</strong> ${card.to}</p>
+    <p style="font-size: 18px; color: #333;"><strong>From:</strong> ${card.from}</p>
+    <h2 style="color: #ff1493; font-family: 'Comic Sans MS', cursive; font-size: 22px;">Happy Valentine's Day!</h2>
+    <p style="color: #333; font-size: 16px;">${card.message}</p>
+</div>`;
             await axios.post('http://localhost:8787/api/cards/send-email', {
                 ...emailFormData,
-                message: card.message,
-                messageType: card.messageType
+                message: emailContent,
+                messageType: 'html'
             });
             setShowModal(false);
             alert('Valentine card sent successfully!');
@@ -60,7 +79,7 @@ const EmailModal = ({ card, onClose, showModal, setShowModal }: EmailModalProps)
             <div className="modal">
                 <h2>Send this Card</h2>
                 <div className="card-preview">
-                    <p><strong>Message:</strong> {card.message}</p>
+                    <EmailCard content={card.message} />
                 </div>
                 <form onSubmit={handleSendEmail}>
                     <div className="form-group">
