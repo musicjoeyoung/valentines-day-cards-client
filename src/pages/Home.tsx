@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useEffect, useState } from 'react';
+
+import EmailModal from '../components/EmailModal';
 import Form from '../components/Form';
 import Gallery from '../components/Gallery';
-import EmailModal from '../components/EmailModal';
+import axios from 'axios';
 
 interface Card {
     id: number;

@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import axios from 'axios';
+import { useState } from 'react';
 
 interface Card {
     id: number;
@@ -41,8 +41,10 @@ const EmailModal = ({ card, onClose, showModal, setShowModal }: EmailModalProps)
                 message: card.message,
                 messageType: card.messageType
             });
-            setSuccessMessage('Valentine card sent successfully!');
             setShowModal(false);
+            alert('Valentine card sent successfully!');
+
+            setSuccessMessage('Valentine card sent successfully!');
             onClose();
             setTimeout(() => {
                 setSuccessMessage('');
