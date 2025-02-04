@@ -5,7 +5,7 @@ interface FormData {
   to: string;
   from: string;
   message: string;
-  messageType: 'custom' | 'improved' | 'sweet' | 'funny' | 'limerick' | 'flavorflav';
+  messageType: 'custom' | 'improved' | 'sweet' | 'funny' | 'limerick' | 'flavorflav' | 'rupaul' | 'deGrasseTyson' | 'goose';
 }
 
 interface FormProps {
@@ -98,7 +98,8 @@ const Form = ({ onCardCreated }: FormProps) => {
           <option value="limerick">Limerick (AI generated)</option>
           <option value="flavorflav">Flavor Flav (AI generated)</option>
           <option value="rupaul">RuPaul (AI generated)</option>
-          <option value="tyson">Neil deGrasse Tyson (AI generated)</option>
+          <option value="deGrasseTyson">Neil deGrasse Tyson (AI generated)</option>
+          <option value="goose">Goose (AI generated)</option>
         </select>
       </div>
 

@@ -53,8 +53,13 @@ const EmailModal = ({ card, onClose, showModal, setShowModal }: EmailModalProps)
     <p style="font-size: 18px; color: #333;"><strong>To:</strong> ${card.to}</p>
     <p style="font-size: 18px; color: #333;"><strong>From:</strong> ${card.from}</p>
     <h2 style="color: #ff1493; font-family: 'Comic Sans MS', cursive; font-size: 22px;">Happy Valentine's Day!</h2>
+    ${(card.messageType === 'limerick' || card.messageType === 'goose') ? `<p style="color: #333; font-size: 16px;">(in the style of a ${card.messageType})</p>` : ''}
+    ${(card.messageType === 'flavorflav') ? `<p style="color: #333; font-size: 16px;">(in the style of Flavor Flav)</p>` : ''}
+    ${(card.messageType === 'rupaul') ? `<p style="color: #333; font-size: 16px;">(in the style of Rupaul)</p>` : ''}
+    ${(card.messageType === 'deGrasseTyson') ? `<p style="color: #333; font-size: 16px;">(in the style of Neil deGrasse Tyson)</p>` : ''}
+
     <p style="color: #333; font-size: 16px;">${card.message}</p>
-</div>`;
+</div >` ;
             await axios.post('http://localhost:8787/api/cards/send-email', {
                 ...emailFormData,
                 message: emailContent,
