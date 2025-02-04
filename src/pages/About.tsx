@@ -16,6 +16,7 @@ const About = () => {
                         <li className="about__feature-item">Let AI enhance your message with romantic flair</li>
                         <li className="about__feature-item">Generate sweet, romantic messages automatically</li>
                         <li className="about__feature-item">Create fun, playful Valentine's messages</li>
+                        <li className="about__feature-item">Get a message in the style of RuPaul, Flavor Flav, or Neil deGrasse Tyson!</li>
                     </ul>
 
                     <div className="about__how-it-works">

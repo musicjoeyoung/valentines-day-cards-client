@@ -47,6 +47,7 @@ const Home = () => {
         <div className="container">
             <h1>Valentine's Day Cards</h1>
             <p>Create a custom card or use one of the predefined options and send it!</p>
+            <p>(Click on a card to send it!)</p>
 
             <Form onCardCreated={getCards} />
             <Gallery cards={cards} onCardClick={handleCardClick} />

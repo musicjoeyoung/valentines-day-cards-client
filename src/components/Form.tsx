@@ -97,6 +97,8 @@ const Form = ({ onCardCreated }: FormProps) => {
           <option value="funny">Funny (AI generated)</option>
           <option value="limerick">Limerick (AI generated)</option>
           <option value="flavorflav">Flavor Flav (AI generated)</option>
+          <option value="rupaul">RuPaul (AI generated)</option>
+          <option value="tyson">Neil deGrasse Tyson (AI generated)</option>
         </select>
       </div>
 

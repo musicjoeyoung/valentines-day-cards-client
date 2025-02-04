@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useState } from 'react';
 
 interface Card {
@@ -21,9 +20,9 @@ interface GalleryProps {
 }
 
 const Gallery = ({ cards, onCardClick }: GalleryProps) => {
-  const [selectedCard, setSelectedCard] = useState<Card | null>(null);
-  const [showModal, setShowModal] = useState(false);
-  const [emailFormData, setEmailFormData] = useState<EmailFormData>({
+  const [_selectedCard, setSelectedCard] = useState<Card | null>(null);
+  const [expandedCardId, setExpandedCardId] = useState<number | null>(null);
+  const [_emailFormData, setEmailFormData] = useState<EmailFormData>({
     to: '',
     from: '',
     email: ''
@@ -36,10 +35,12 @@ const Gallery = ({ cards, onCardClick }: GalleryProps) => {
       from: card.from,
       email: ''
     });
-    setShowModal(true);
     onCardClick(card);
   };
 
+  const handleToggleExpand = (cardId: number) => {
+    setExpandedCardId(expandedCardId === cardId ? null : cardId);
+  };
 
   return (
     <>
@@ -52,7 +53,15 @@ const Gallery = ({ cards, onCardClick }: GalleryProps) => {
           >
             <div className="card-content">
               <h3>To: {card.to}</h3>
-              <p className="message">{card.message}</p>
+
+              <p className="message" >
+                {expandedCardId === card.id ? card.message : card.message.substring(0, 100) + '...'}
+              </p>
+              {card.message.length > 100 && (
+                <p className="see-more" onClick={(e) => { e.stopPropagation(); e.preventDefault(); handleToggleExpand(card.id) }}>
+                  {expandedCardId === card.id ? 'See Less' : 'See More'}
+                </p>
+              )}
               <h4>From: {card.from}</h4>
               <span className="card-type">{card.messageType}</span>
             </div>
