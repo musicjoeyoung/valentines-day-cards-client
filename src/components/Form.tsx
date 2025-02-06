@@ -21,6 +21,7 @@ const Form = ({ onCardCreated }: FormProps) => {
   });
   const [isCreating, setIsCreating] = useState(false);
   const [error, setError] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,6 +37,7 @@ const Form = ({ onCardCreated }: FormProps) => {
       });
     } catch (error) {
       console.error('Error:', error);
+      setErrorMessage('Something went wrong, love! So sorry--please try again later.');
     } finally {
       setIsCreating(false);
     }
@@ -125,6 +127,12 @@ const Form = ({ onCardCreated }: FormProps) => {
           </div>
         )}
       </div>
+
+      {errorMessage && (
+        <div className="error-message">
+          {errorMessage}
+        </div>
+      )}
 
       <button
         type="submit"
