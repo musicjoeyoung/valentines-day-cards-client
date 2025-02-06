@@ -63,7 +63,7 @@ const EmailModal = ({ card, onClose, showModal, setShowModal }: EmailModalProps)
 
     <p style="color: #333; font-size: 16px;">${card.message}</p>
 </div >` ;
-            await axios.post(`${URL}/cards/send-email`, {
+            await axios.post(`${URL}/api/cards/send-email`, {
                 ...emailFormData,
                 message: emailContent,
                 messageType: 'html'

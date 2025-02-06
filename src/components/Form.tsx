@@ -30,7 +30,7 @@ const Form = ({ onCardCreated }: FormProps) => {
     e.preventDefault();
     setIsCreating(true);
     try {
-      await axios.post(`${URL}/cards`, formData);
+      await axios.post(`${URL}/api/cards`, formData);
       onCardCreated();
       setFormData({
         to: '',

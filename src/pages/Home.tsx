@@ -26,7 +26,7 @@ const Home = () => {
 
     const getCards = async () => {
         try {
-            const response = await axios.get(`${URL}/cards`);
+            const response = await axios.get(`${URL}/api/cards`);
             setCards(response.data.cards);
         } catch (error) {
             console.error('Error:', error);
