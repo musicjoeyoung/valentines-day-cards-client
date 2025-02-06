@@ -7,7 +7,7 @@ const About = () => {
                     <h1 className="about__title">About Valentine's Day Cards</h1>
 
                     <p className="about__description">
-                        Create and share personalized Valentine's Day messages with your loved ones!
+                        Create and share personalized Valentine's Day messages with your loved ones in this public gallery!
                     </p>
 
                     <h2 className="about__subtitle">Features</h2>
