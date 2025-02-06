@@ -12,6 +12,9 @@ interface FormProps {
   onCardCreated: () => void;
 }
 
+const URL = import.meta.env.VITE_API_URL;
+
+
 const Form = ({ onCardCreated }: FormProps) => {
   const [formData, setFormData] = useState<FormData>({
     to: '',
@@ -27,7 +30,7 @@ const Form = ({ onCardCreated }: FormProps) => {
     e.preventDefault();
     setIsCreating(true);
     try {
-      await axios.post('http://localhost:8787/api/cards', formData);
+      await axios.post(`${URL}/cards`, formData);
       onCardCreated();
       setFormData({
         to: '',

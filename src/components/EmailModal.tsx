@@ -18,6 +18,9 @@ interface EmailModalProps {
     setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+const URL = import.meta.env.VITE_API_URL;
+
+
 const EmailCard: React.FC<{ content: string }> = ({ content }) => {
     return (
         <div className="email-card">
@@ -60,7 +63,7 @@ const EmailModal = ({ card, onClose, showModal, setShowModal }: EmailModalProps)
 
     <p style="color: #333; font-size: 16px;">${card.message}</p>
 </div >` ;
-            await axios.post('http://localhost:8787/api/cards/send-email', {
+            await axios.post(`${URL}/cards/send-email`, {
                 ...emailFormData,
                 message: emailContent,
                 messageType: 'html'

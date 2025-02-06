@@ -13,6 +13,8 @@ interface Card {
     messageType: string;
 }
 
+const URL = import.meta.env.VITE_API_URL;
+
 const Home = () => {
     const [cards, setCards] = useState<Card[]>([]);
     const [selectedCard, setSelectedCard] = useState<Card | null>(null);
@@ -24,7 +26,7 @@ const Home = () => {
 
     const getCards = async () => {
         try {
-            const response = await axios.get('http://localhost:8787/api/cards');
+            const response = await axios.get(`${URL}/cards`);
             setCards(response.data.cards);
         } catch (error) {
             console.error('Error:', error);
