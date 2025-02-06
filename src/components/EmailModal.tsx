@@ -44,7 +44,7 @@ const EmailModal = ({ card, onClose, showModal, setShowModal }: EmailModalProps)
 
     const handleSendEmail = async (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('Sending email with data:', emailFormData);
+        //console.log('Sending email with data:', emailFormData);
 
         try {
             const emailContent = `

@@ -37,12 +37,12 @@ const Home = () => {
     };
 
     const handleCloseModal = () => {
-        console.log('Closing modal, resetting selectedCard.');
+        //console.log('Closing modal, resetting selectedCard.');
         setShowModal(false);
         setSelectedCard(null);
     };
 
-    console.log('Rendering Home, showModal:', showModal);
+    //console.log('Rendering Home, showModal:', showModal);
     return (
         <div className="container">
             <h1>Valentine's Day Cards</h1>
