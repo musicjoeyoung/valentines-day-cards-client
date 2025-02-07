@@ -41,6 +41,7 @@ const Form = ({ onCardCreated }: FormProps) => {
     } catch (error) {
       console.error('Error:', error);
       setErrorMessage('Something went wrong, love! So sorry--please try again later.');
+      setTimeout(() => setErrorMessage(''), 7000);
     } finally {
       setIsCreating(false);
     }

@@ -6,6 +6,7 @@ interface Card {
   from: string;
   message: string;
   messageType: string;
+  created_at: string;
 }
 
 interface EmailFormData {
@@ -42,10 +43,12 @@ const Gallery = ({ cards, onCardClick }: GalleryProps) => {
     setExpandedCardId(expandedCardId === cardId ? null : cardId);
   };
 
+  const sortedCards = [...cards].sort((a, b) => b.id - a.id);
+  console.log("sortedCards: ", sortedCards)
   return (
     <>
       <div className="cards-gallery">
-        {cards.map((card) => (
+        {sortedCards.map((card) => (
           <div
             key={card.id}
             className="card"

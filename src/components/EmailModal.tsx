@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import React from 'react';
 import './EmailCard.css'; // Importing CSS for styling the card
 
@@ -37,12 +37,21 @@ const EmailModal = ({ card, onClose, showModal, setShowModal }: EmailModalProps)
         email: ''
     });
     const [successMessage, setSuccessMessage] = useState<string>('');
+    const [editableMessage, setEditableMessage] = useState(card.message);
+
+    useEffect(() => {
+        setEditableMessage(card.message);
+    }, [card.message, showModal]);
 
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmailFormData(prev => ({
             ...prev,
             [e.target.name]: e.target.value
         }));
+    };
+
+    const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setEditableMessage(e.target.value);
     };
 
     const handleSendEmail = async (e: React.FormEvent) => {
@@ -61,7 +70,7 @@ const EmailModal = ({ card, onClose, showModal, setShowModal }: EmailModalProps)
     ${(card.messageType === 'rupaul') ? `<p style="color: #333; font-size: 16px;">(in the style of Rupaul)</p>` : ''}
     ${(card.messageType === 'deGrasseTyson') ? `<p style="color: #333; font-size: 16px;">(in the style of Neil deGrasse Tyson)</p>` : ''}
 
-    <p style="color: #333; font-size: 16px;">${card.message}</p>
+    <p style="color: #333; font-size: 16px;">${editableMessage}</p>
 </div >` ;
             await axios.post(`${URL}/api/cards/send-email`, {
                 ...emailFormData,
@@ -87,7 +96,7 @@ const EmailModal = ({ card, onClose, showModal, setShowModal }: EmailModalProps)
             <div className="modal">
                 <h2>Send this Card</h2>
                 <div className="card-preview">
-                    <EmailCard content={card.message} />
+                    <EmailCard content={editableMessage} />
                 </div>
                 <form onSubmit={handleSendEmail}>
                     <div className="form-group">
@@ -122,6 +131,16 @@ const EmailModal = ({ card, onClose, showModal, setShowModal }: EmailModalProps)
                             onChange={handleEmailChange}
                             required
                         />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="message">Message:</label>
+                        <textarea
+                            id="message"
+                            name="message"
+                            value={editableMessage}
+                            onChange={handleMessageChange}
+                            required
+                        ></textarea>
                     </div>
                     <div className="modal-buttons">
                         <button type="submit">Send Card</button>

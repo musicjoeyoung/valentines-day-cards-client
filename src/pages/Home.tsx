@@ -11,6 +11,7 @@ interface Card {
     from: string;
     message: string;
     messageType: string;
+    created_at: string;
 }
 
 const URL = import.meta.env.VITE_API_URL;
