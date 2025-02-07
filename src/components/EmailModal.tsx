@@ -51,7 +51,8 @@ const EmailModal = ({ card, onClose, showModal, setShowModal }: EmailModalProps)
     };
 
     const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setEditableMessage(e.target.value);
+        const sanitizedValue = e.target.value.replace(/<[^>]*>/g, '');
+        setEditableMessage(sanitizedValue);
     };
 
     const handleSendEmail = async (e: React.FormEvent) => {
