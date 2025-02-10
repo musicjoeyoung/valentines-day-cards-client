@@ -48,7 +48,7 @@ const Home = () => {
     //console.log('Rendering Home, showModal:', showModal);
     return (
         <div className="container">
-            <h1>Valentine's Day Cards</h1>
+            <h1>Valentine's Day Cards Gallery</h1>
             <p>Create a custom card or use one of the predefined options and send it!</p>
             <p>(Click on a card to send it!)</p>
 
