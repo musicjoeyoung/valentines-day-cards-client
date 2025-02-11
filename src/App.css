@@ -6,6 +6,19 @@
 
 .container {
   padding: 1rem;
+
+  .container__email-info {
+    font-size: 1.25rem;
+    color: #e91e63;
+  }
+
+  .container__email-info--span {
+    display: inline-block;
+    color: purple;
+    animation: pulse 1s infinite;
+    transform-origin: center;
+    margin: 0 5px;
+  }
 }
 
 h1 {
@@ -152,10 +165,10 @@ button:disabled {
   margin-top: 1rem;
   color: #e91e63;
   font-weight: 500;
-  animation: pulse 2s infinite;
+  animation: appear 2s infinite;
 }
 
-@keyframes pulse {
+@keyframes appear {
   0% {
     opacity: 0.6;
   }

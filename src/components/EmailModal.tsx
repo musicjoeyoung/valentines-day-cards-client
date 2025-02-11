@@ -109,6 +109,7 @@ const EmailModal = ({ card, onClose, showModal, setShowModal }: EmailModalProps)
                             value={emailFormData.email}
                             onChange={handleEmailChange}
                             required
+                            placeholder="enter email address"
                         />
                     </div>
                     <div className="form-group">

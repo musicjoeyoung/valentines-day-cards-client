@@ -73,6 +73,7 @@ const Form = ({ onCardCreated }: FormProps) => {
           value={formData.to}
           onChange={handleChange}
           required
+          placeholder='enter name'
         />
       </div>
 
@@ -85,6 +86,7 @@ const Form = ({ onCardCreated }: FormProps) => {
           value={formData.from}
           onChange={handleChange}
           required
+          placeholder='enter name'
         />
       </div>
 

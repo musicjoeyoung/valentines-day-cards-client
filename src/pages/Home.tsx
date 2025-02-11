@@ -50,7 +50,7 @@ const Home = () => {
         <div className="container">
             <h1>Valentine's Day Cards Gallery</h1>
             <p>Create a custom card or use one of the predefined options and send it!</p>
-            <p>(Click on a card to send it!)</p>
+            <p className='container__email-info'>Want to <span className='container__email-info--span'>email</span>  a card? Click on one below the form!</p>
 
             <Form onCardCreated={getCards} />
             <Gallery cards={cards} onCardClick={handleCardClick} />
